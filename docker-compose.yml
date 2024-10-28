@@ -1,0 +1,37 @@
+# install mysql & redis & py-web
+version: '3.5'
+
+networks:
+  midjourney-api-network:
+    driver: bridge
+    name: midjourney-api-network
+
+services:
+  midjourney-proxy:
+    container_name: midjourney-proxy
+    build:
+      context: ./midjourney-proxy/
+      dockerfile: Dockerfile
+    restart: on-failure
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - 9300:9300
+    volumes:
+      - ./midjourney-proxy/src:/home/spring/src
+      - ./config:/home/spring/config
+    networks:
+      - midjourney-api-network
+  
+  # midjourney-redis:
+  #   container_name: midjourney-redis
+  #   image: redis:6.0.9
+  #   restart: always
+  #   environment:
+  #     - TZ=Asia/Shanghai
+  #   ports:
+  #     - 16379:6379
+  #   volumes:
+  #     - ./dockerfiles/data/redis:/data
+  #   networks:
+  #     - midjourney-api-network

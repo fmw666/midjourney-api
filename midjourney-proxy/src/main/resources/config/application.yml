@@ -1,0 +1,33 @@
+mj:
+  task-store:
+    type: in_memory
+    timeout: 30d
+  translate-way: null
+  discord:
+    guild-id: 1135771774492090448
+    channel-id: 1135771774492090451
+    user-token: xxx
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+server:
+  port: 9300
+  servlet:
+    context-path: /mj
+logging:
+  level:
+    ROOT: info
+    com.github.novicezk.midjourney: debug
+knife4j:
+  enable: true
+  openapi:
+    title: Midjourney Proxy API文档
+    description: 代理 MidJourney 的discord频道，实现api形式调用AI绘图
+    concat: novicezk
+    url: https://github.com/novicezk/midjourney-proxy
+    version: v2.6.2
+    terms-of-service-url: https://github.com/novicezk/midjourney-proxy
+    group:
+      api:
+        group-name: API
+        api-rule: package
+        api-rule-resources:
+          - com.github.novicezk.midjourney.controller
